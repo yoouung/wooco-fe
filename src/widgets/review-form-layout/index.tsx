@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { getPlace } from '@/src/entities/place/api'
 import FormReview from '@/src/features/place/form-review'
 import { ReviewPayloadType } from '@/src/entities/review/type'
-import DefaultFooter from '@/src/widgets/default-footer'
 
 interface ReviewFormLayoutProps {
   placeId?: string
@@ -31,9 +30,9 @@ export default function ReviewFormLayout({
     handleSubmit,
     setValue,
     watch,
-    formState: { isSubmitting, errors, isValid },
+    formState: { isSubmitting, errors },
   } = useForm<ReviewPayloadType>({
-    mode: 'onSubmit ',
+    mode: 'onSubmit',
     defaultValues: {
       rating: 0,
       contents: '',
@@ -77,8 +76,7 @@ export default function ReviewFormLayout({
     }
 
     try {
-      await postReview(placeId, data)
-        .then()
+      await postReview(placeId, data).then()
     } catch (error) {
       console.error(error)
     }
@@ -117,7 +115,6 @@ export default function ReviewFormLayout({
           </button>
         </div>
       </form>
-      <DefaultFooter />
     </div>
   )
 }

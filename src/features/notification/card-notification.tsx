@@ -1,31 +1,50 @@
-import { Notification, NOTIFICATION_TYPE } from '@/src/views/list-notification'
 import { MessageCircle, UserRound, SquareGanttChart } from 'lucide-react'
 import Image from 'next/image'
 import courseColor from '@/src/assets/images/course_color.png'
 import logo from '@/src/assets/images/(logo)/logo.png'
+import { NotificationType } from '@/src/entities/notification/type'
 
 export default function CardNotification({
   notification,
 }: {
-  notification: Notification
-}) {
-  const iconMap: Record<keyof typeof NOTIFICATION_TYPE, React.ReactNode> = {
-    [NOTIFICATION_TYPE.comment]: (
-      <MessageCircle fill='#5A59F2' stroke='#5A59F2' strokeWidth={1.5} />
-    ),
-    [NOTIFICATION_TYPE.plan_review]: (
-      <SquareGanttChart stroke='#5A59F2' strokeWidth={1.5} />
-    ),
-    [NOTIFICATION_TYPE.plan_writing]: (
-      <UserRound stroke='#5A59F2' strokeWidth={1.5} />
-    ),
-    [NOTIFICATION_TYPE.share_course]: (
-      <Image src={courseColor} alt='course' width={20} height={20} />
-    ),
-    [NOTIFICATION_TYPE.wooco]: (
-      <Image src={logo} alt='logo' width={20} height={20} />
-    ),
+  notification: NotificationType
+  }) {
+  const { type, target_id, target_name, is_read, sent_at } = notification
+  
+  const iconMap = {
+    if(type === 'comment') {
+      return <MessageCircle fill='#5A59F2' stroke='#5A59F2' strokeWidth={1.5} />
+}
+    if(type === 'plan_review') {
+      return <SquareGanttChart stroke='#5A59F2' strokeWidth={1.5} />
+    }
+    if(type === 'plan_writing') {
+      return <UserRound stroke='#5A59F2' strokeWidth={1.5} />
+    }
+if (type === 'share_course') {
+      return <Image src={courseColor} alt='course' width={20} height={20} />
+    }
+    if (type === 'wooco') {
+      return <Image src={logo} alt='logo' width={20} height={20} />
+    }
   }
+
+  //   [type === 'comment']: (
+  //     <MessageCircle fill='#5A59F2' stroke='#5A59F2' strokeWidth={1.5} />
+  //   ),
+  //   [NOTIFICATION_TYPE.plan_review]: (
+  //     <SquareGanttChart stroke='#5A59F2' strokeWidth={1.5} />
+  //   ),
+  //   [NOTIFICATION_TYPE.plan_writing]: (
+  //     <UserRound stroke='#5A59F2' strokeWidth={1.5} />
+  //   ),
+  //   [NOTIFICATION_TYPE.share_course]: (
+  //     <Image src={courseColor} alt='course' width={20} height={20} />
+  //   ),
+  //   [NOTIFICATION_TYPE.wooco]: (
+  //     <Image src={logo} alt='logo' width={20} height={20} />
+  //   ),
+  // }
 
   const messageMap: Record<keyof typeof NOTIFICATION_TYPE, string> = {
     [NOTIFICATION_TYPE.comment]: '새로운 댓글이 달렸어요.',

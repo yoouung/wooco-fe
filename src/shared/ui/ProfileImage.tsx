@@ -11,15 +11,12 @@ export function ProfileImage({
   src: string | StaticImageData
   userId: string
 }) {
-  const customLoader = ({ src }: { src: string }) => {
-    return src
-  }
 
   return (
     <Link href={`/users/${userId}`} legacyBehavior>
       <div className={`w-[${size}px] h-[${size}px] bg-wooco_blue-secondary bg-no-repeat rounded-full flex items-center justify-center`}>
         <Image
-          loader={customLoader}
+          unoptimized
           className={`rounded-full bg-white object-cover aspect-square overflow-hidden`}
           alt='프로필이미지'
           src={src || person}

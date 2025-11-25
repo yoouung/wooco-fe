@@ -1,7 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ProfileImage } from '@/src/shared/ui'
 import {
   CourseType,
@@ -9,7 +9,6 @@ import {
   useCourseLike,
 } from '@/src/entities/course'
 import logo from '@/src/assets/icon/small(20)/logo.svg'
-import { useEffect, useState } from 'react'
 import { ShareModal } from '@/src/features'
 
 export function GridCard({ course }: { course: CourseType }) {
@@ -46,13 +45,12 @@ export function GridCard({ course }: { course: CourseType }) {
   return (
     <div className='w-[164px] h-[217px] flex flex-col justify-between pb-[8px] rounded-[10px] bg-white drop-shadow-[0_0_4px_rgba(0,0,0,0.15)]'>
       <Link href={`/courses/${id}`} className='w-full flex flex-col gap-[10px]'>
-        <Image
+        <img
           src={imgError ? logo : places[0].thumbnail_url}
           width={207}
           height={100}
           className='h-[100px] bg-light-gray rounded-tr-[10px] rounded-tl-[10px] object-cover'
           alt='course-image'
-          placeholder='empty'
           onError={() => setImgError(true)}
         />
 
